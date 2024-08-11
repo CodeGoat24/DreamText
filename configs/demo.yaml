@@ -1,0 +1,24 @@
+type: "demo"
+
+# path
+load_ckpt_path: "./checkpoints/pre_trained.ckpt"
+
+model_cfg_path: "./configs/test/textdesign_sd_2.yaml"
+
+# param
+H: 512
+W: 512
+seq_len: 12
+batch_size: 1
+
+channel: 4 # AE latent channel
+factor: 8 # AE downsample factor
+scale: [4.0, 0.0] # cfg scale, None
+force_uc_zero_embeddings: ["ref", "label"]
+detailed: True
+
+# runtime
+steps: 50
+init_step: 0
+num_workers: 0
+gpu: 3
