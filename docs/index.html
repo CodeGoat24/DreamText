@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DreamText</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <!--  support TeX in .html file  -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      extensions: ["tex2jax.js"],
+      "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] },
+      tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+      TeX: { noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
+      messageStyle: "none"
+    });
+    </script>    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+  <!--  support TeX in .html file  -->
+
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">High Fidelity Scene Text Synthesis</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://codegoat24.github.io/"><b>Yibin Wang</b></a><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://weizhonz.github.io/"><b>Weizhong Zhang</b></a><sup>*</sup>,</span>
+              <span class="author-block">
+                <b>Changhai Zhou</b><sup></sup>,</span>
+            <span class="author-block">
+              <a href="https://cjinfdu.github.io/"><b>Cheng Jin</b></a><sup>†</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup></sup>School of Computer Science, Fudan University, China</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup></sup>School of Data Science, Fudan University, China</span>
+        </div>
+          <span class=""><sup>*</sup>Equal Contribution</span>
+          <span class=""><sup>†</sup>Corrsponding Author</span>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2405.14701"
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/CodeGoat24/DreamText"
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Begin Teaser -->
+<div>
+  <!-- <div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Universal-Style Human Customization</h2>
+  </div> -->
+  </br>
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div> 
+        <img src="./static/images/display.png"
+        class="interpolation-image"
+        alt="Interpolate start reference image."/>
+        
+        <!-- <img src="./static/images/results_of_single_concept.png"
+        class="interpolation-image"
+        alt="Interpolate start reference image."/> -->
+        </div>
+      <div class="hero-body">
+        <h2 class="subtitle has-text-justified">
+          <p class="has-text-centered">Our DreamText is capable of synthesize high-fidelity texts in the given scene.</p>
+        </h2>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- End Teaser -->
+
+
+<!-- Begin abstract -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <!-- <img src='static/images/method_overview.png' id="framework"><br><br> -->
+        <div class="content has-text-justified">
+          <p>
+            Scene text synthesis involves rendering specified texts onto arbitrary images. 
+Current methods typically formulate this task in an end-to-end manner but lack effective character-level guidance during training.
+Besides, their text encoders, pre-trained on a single font type, struggle to adapt to the diverse font styles encountered in practical applications.
+Consequently, these methods suffer from character distortion, repetition, and absence, particularly in polystylistic scenarios.
+To this end, this paper proposes DreamText for high-fidelity scene text synthesis.
+Our key idea is to reconstruct the diffusion training process, introducing more refined guidance tailored to this task, to expose and rectify the model's attention at the character level and strengthen its learning of text regions.
+This transformation poses a hybrid optimization challenge, involving both discrete and continuous variables. To effectively tackle this challenge, we employ a heuristic alternate optimization strategy. Meanwhile, we jointly train the text encoder and generator to comprehensively learn and utilize the diverse font present in the training dataset. This joint training is seamlessly integrated into the alternate optimization process, fostering a synergistic relationship between learning character embedding and re-estimating character attention.
+Specifically, in each step, we first encode potential character-generated position information from cross-attention maps into latent character masks. These masks are then utilized to update the representation of specific characters in the current step, which, in turn, enables the generator to correct the character's attention in the subsequent steps.
+Both qualitative and quantitative results demonstrate the superiority of our method to the state of the art.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End abstract -->
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method Overview. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Problems in Existing Methods</h2>
+        <img src='static/images/problems.png' id="framework"><br>
+        <div class="content has-text-justified">
+          <p>
+            Current methods encounter significant challenges, i.e., character repetition and absence
+(top) and character distortion (bottom).
+          </p>
+        </div>
+        <img src='static/images/problem_visualization.png' id="framework"><br>
+        <div class="content has-text-justified">
+          <p>
+            The problematic results rendered by characters’ attention maps (AMs).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Begin method overview -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method Overview. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Heuristic Alternate Optimization</h2>
+        <img src='static/images/architecture.png' id="framework"><br>
+        <div class="content has-text-justified">
+          <p>
+            We develop a heuristic iterative optimization pipeline to enable efficient training. Our key idea is to explicitly model the potential character positions in attention maps by encoding them into latent character masks in each step. These masks are then used to enhance the learning of the text encoder through our carefully crafted losses, facilitating the calibration of character attention in the subsequent step. This heuristic iterative process allows our model to dynamically alternate between optimizing character embedding and re-estimating character generation positions. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End method overview -->
+
+
+<!-- Begin Qualitative Comparison -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method Overview. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Qualitative Comparisons</h2>
+        <img src='static/images/comparison.png' id="framework">
+        <div class="content has-text-centered">
+        </div>
+        <img src='static/images/comparison_2.png' id="framework">
+        <div class="content has-text-centered">
+          <img src='static/images/comparison_3.png' id="framework">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Qualitative Comparison -->
+
+
+<!-- Begin More Visual Results. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method Overview. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">More Visual Results</h2>
+        <img src='static/images/more_visual_result.png' id="framework">
+        <div class="content has-text-centered">
+
+        </div>
+        <img src='static/images/more_visual_result_2.png' id="framework">
+        <div class="content has-text-centered">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End More Visual Results. -->
+
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{DreamText,
+      title={High Fidelity Scene Text Synthesis},
+      author={Wang, Yibin and Zhang, Weizhong and Zhou, Changhai and Jin, Cheng},
+      journal={arXiv preprint arXiv:2405.14701},
+      year={2024}
+    }
+    </code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="content has-text-centered">
+        <div class="content">
+          <p>
+            This website was modified from <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+ 
