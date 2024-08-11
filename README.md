@@ -1,5 +1,6 @@
-# High Fidelity Scene Text Synthesis
 <div align="center">
+<h1>High Fidelity Scene Text Synthesis</h1>
+
 
 [Yibin Wang](https://codegoat21.github.io)\*, [Weizhong Zhang](https://weizhonz.github.io/)\*, Changhai Zhou, [Cheng Jin](https://cjinfdu.github.io/)&#8224; 
 
@@ -42,7 +43,7 @@ python run_gradio.py
 ## 🗓️ TODO
 - [x] Release inference code
 - [x] Release gradio demo
-- [] Release training code and datasets
+- [ ] Release training code and datasets
 - [ ] Release evalutation code
 
 
