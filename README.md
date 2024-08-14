@@ -44,7 +44,7 @@ python run_gradio.py
 - [x] Release inference code
 - [x] Release gradio demo
 - [ ] Release training code and datasets
-- [ ] Release evalutation code
+- [ ] Release evaluation code
 
 
 
