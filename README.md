@@ -50,7 +50,7 @@ python run_gradio.py
 
 ## 🙏 Acknowledgement
 
-We thank to [Stable Diffusion](https://github.com/Stability-AI/generative-models), [UDiffText](https://github.com/ZYM-PKU/UDiffText) and [TextDiffuser](https://github.com/microsoft/unilm/tree/master/textdiffuser).
+Our work is based on [Stable-Diffusion](https://github.com/Stability-AI/stablediffusion). 
 
 ## 🎫 License
 For non-commercial academic use, this project is licensed under [the 2-clause BSD License](https://opensource.org/license/bsd-2-clause). 
