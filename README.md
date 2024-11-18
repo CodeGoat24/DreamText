@@ -2,9 +2,9 @@
 <h1>High Fidelity Scene Text Synthesis</h1>
 
 
-[Yibin Wang](https://codegoat24.github.io)\*, [Weizhong Zhang](https://weizhonz.github.io/)\*, Changhai Zhou, [Cheng Jin](https://cjinfdu.github.io/)&#8224; 
+[Yibin Wang](https://codegoat24.github.io), [Weizhong Zhang](https://weizhonz.github.io/)&#8224;, [Cheng Jin](https://cjinfdu.github.io/)&#8224; 
 
-(*equal contribution, &#8224;corresponding author)
+(&#8224;corresponding author)
 
 [Fudan University]
 
