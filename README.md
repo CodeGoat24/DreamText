@@ -2,7 +2,7 @@
 <h1>High Fidelity Scene Text Synthesis</h1>
 
 
-[Yibin Wang](https://codegoat24.github.io), [Weizhong Zhang](https://weizhonz.github.io/)&#8224;, [Cheng Jin](https://cjinfdu.github.io/)&#8224; 
+[Yibin Wang](https://codegoat24.github.io), [Weizhong Zhang](https://weizhonz.github.io/)&#8224;, [Honghui Xu](https://scholar.google.com.hk/citations?user=_cZgJawAAAAJ&hl=zh-CN)&#8224;, [Cheng Jin](https://cjinfdu.github.io/)&#8224; 
 
 (&#8224;corresponding author)
 
