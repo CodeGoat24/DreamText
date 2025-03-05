@@ -2,7 +2,7 @@
 <h1>DreamText: High Fidelity Scene Text Synthesis</h1>
 
 
-[Yibin Wang](https://codegoat24.github.io)\*, [Weizhong Zhang](https://weizhonz.github.io/)\*, [Honghui Xu](https://scholar.google.com.hk/citations?user=_cZgJawAAAAJ&hl=zh-CN), [Cheng Jin](https://cjinfdu.github.io/)&#8224; 
+[Yibin Wang](https://codegoat24.github.io), [Weizhong Zhang](https://weizhonz.github.io/)&#8224;, [Honghui Xu](https://scholar.google.com.hk/citations?user=_cZgJawAAAAJ&hl=zh-CN), [Cheng Jin](https://cjinfdu.github.io/)&#8224; 
 
 (&#8224;corresponding author)
 
@@ -21,10 +21,9 @@ Scene text synthesis involves rendering specified texts onto arbitrary images. C
 
 ![DreamText Teaser](demo/teaser.png)
 
-## 🚀 Gradio Demo
+## Usage
 
-
-### Setup
+### Environment Setup
 
 ```bash
 conda create -n dreamtext python=3.11
@@ -33,19 +32,99 @@ pip install -r requirements.txt
 ```
 
 ### Download our Pre-trained Models
-Download our available [checkpoints](https://drive.google.com/file/d/1Q4B0oAnksORsPJS5TwoJU5uPRSFEbwS5/view?usp=sharing) and put them in the corresponding directories in **./checkpoints**.
+Download our available [checkpoints](https://drive.google.com/file/d/1Q4B0oAnksORsPJS5TwoJU5uPRSFEbwS5/view?usp=sharing) and put them in the corresponding directories in `./checkpoints`.
 
-### Run
+
+## Gradio Demo
 You can run the demo locally by
 ```
 python run_gradio.py
 ```
 <img src=demo/gradio.png style="zoom:30%" />
 
-## 🗓️ TODO
-- [x] Release inference code
-- [x] Release gradio demo
-- [ ] Release training code and datasets (Coming soon!)
+
+## Preparing Datasets
+
+
+### LAION-OCR
+- Create a data directory `{your data root}/LAION-OCR` in your disk and put your data in it. Then set the **data_root** field in `./configs/dataset/locr.yaml`.
+- For the downloading and preprocessing of Laion-OCR dataset, please refer to [TextDiffuser](https://github.com/microsoft/unilm/tree/master/textdiffuser) and `./scripts/preprocess/laion_ocr_pre.ipynb`.
+
+### ICDAR13
+- Create a data directory `{your data root}/ICDAR13` in your disk and put your data in it. Then set the **data_root** field in `./configs/dataset/icd13.yaml`.
+- Build the tree structure as below:
+```
+ICDAR13
+├── train                  // training set
+    ├── annos              // annotations
+        ├── gt_x.txt
+        ├── ...
+    └── images             // images
+        ├── img_x.jpg
+        ├── ...
+└── val                    // validation set
+    ├── annos              // annotations
+        ├── gt_img_x.txt
+        ├── ...
+    └── images             // images
+        ├── img_x.jpg
+        ├── ...
+```
+
+### TextSeg
+- Create a data directory `{your data root}/TextSeg` in your disk and put your data in it. Then set the **data_root** field in `./configs/dataset/tsg.yaml`.
+- Build the tree structure as below:
+```
+TextSeg
+├── train                  // training set
+    ├── annotation         // annotations
+        ├── x_anno.json    // annotation json file
+        ├── x_mask.png     // character-level mask
+        ├── ...
+    └── image              // images
+        ├── x.jpg.jpg
+        ├── ...
+└── val                    // validation set
+    ├── annotation         // annotations
+        ├── x_anno.json    // annotation json file
+        ├── x_mask.png     // character-level mask
+        ├── ...
+    └── image              // images
+        ├── x.jpg
+        ├── ...
+```
+
+### SynthText
+- Create a data directory `{your data root}/SynthText` in your disk and put your data in it. Then set the **data_root** field in `./configs/dataset/st.yaml`.
+- Build the tree structure as below:
+```
+SynthText
+├── 1                      // part 1
+    ├── ant+hill_1_0.jpg   // image
+    ├── ant+hill_1_1.jpg
+    ├── ...
+├── 2                      // part 2
+├── ...
+└── gt.mat                 // annotation file
+```
+
+
+
+## Training
+Download the [stable-diffusion-2-inpainting](https://huggingface.co/stabilityai/stable-diffusion-2-inpainting/blob/main/512-inpainting-ema.ckpt) and put it in `./checkpoints/pretrained/`.
+
+Set the parameters in `./configs/train.yaml` and run:
+
+```
+python train.py
+```
+
+## Evaluation
+Set the parameters in `./configs/test.yaml` and run:
+
+```
+python test.py
+```
 
 
 
@@ -55,7 +134,7 @@ For commercial use, please contact [Cheng Jin](jc@fudan.edu.cn).
 
 
 ## 🖊️ BibTeX
-If you find this project useful in your research, please consider cite:
+🌟 If you find our work helpful, please leave us a star and cite our paper.
 
 ```bibtex
 @article{DreamText,
