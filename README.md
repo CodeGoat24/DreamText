@@ -8,6 +8,8 @@
 
 [Fudan University]
 
+[Shanghai Innovation Intuition]
+
 CVPR2025
 
 <a href="https://arxiv.org/pdf/2405.14701">
