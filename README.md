@@ -139,13 +139,14 @@ For commercial use, please contact [Cheng Jin](jc@fudan.edu.cn).
 If you find our work helpful, please leave us a star and cite our paper.
 
 ```bibtex
-@article{DreamText,
+@inproceedings{DreamText,
       title={High Fidelity Scene Text Synthesis},
       author={Wang, Yibin and Zhang, Weizhong and Honghui, Xu and Jin, Cheng},
-      journal={CVPR},
+      booktitle={CVPR},
       year={2025}
     }
 ```
+
 
 ## 📧 Contact
 
