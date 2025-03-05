@@ -21,7 +21,7 @@ Scene text synthesis involves rendering specified texts onto arbitrary images. C
 
 ![DreamText Teaser](demo/teaser.png)
 
-## Usage
+## 🔧 Usage
 
 ### Environment Setup
 
@@ -35,7 +35,7 @@ pip install -r requirements.txt
 Download our available [checkpoints](https://drive.google.com/file/d/1Q4B0oAnksORsPJS5TwoJU5uPRSFEbwS5/view?usp=sharing) and put them in the corresponding directories in `./checkpoints`.
 
 
-## Gradio Demo
+## 🚀 Gradio Demo
 You can run the demo locally by
 ```
 python run_gradio.py
@@ -43,7 +43,7 @@ python run_gradio.py
 <img src=demo/gradio.png style="zoom:30%" />
 
 
-## Preparing Datasets
+## 🎨 Preparing Datasets
 
 
 ### LAION-OCR
@@ -110,7 +110,7 @@ SynthText
 
 
 
-## Training
+## 💻 Training
 Download the [stable-diffusion-2-inpainting](https://huggingface.co/stabilityai/stable-diffusion-2-inpainting/blob/main/512-inpainting-ema.ckpt) and put it in `./checkpoints/pretrained/`.
 
 Set the parameters in `./configs/train.yaml` and run:
@@ -119,7 +119,7 @@ Set the parameters in `./configs/train.yaml` and run:
 python train.py
 ```
 
-## Evaluation
+## ✨ Evaluation
 Set the parameters in `./configs/test.yaml` and run:
 
 ```
@@ -133,8 +133,8 @@ For non-commercial academic use, this project is licensed under [the 2-clause BS
 For commercial use, please contact [Cheng Jin](jc@fudan.edu.cn).
 
 
-## 🖊️ BibTeX
-🌟 If you find our work helpful, please leave us a star and cite our paper.
+## ⭐ BibTeX
+If you find our work helpful, please leave us a star and cite our paper.
 
 ```bibtex
 @article{DreamText,
