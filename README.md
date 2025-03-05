@@ -60,9 +60,9 @@ If you find this project useful in your research, please consider cite:
 ```bibtex
 @article{DreamText,
       title={High Fidelity Scene Text Synthesis},
-      author={Wang, Yibin and Zhang, Weizhong and Zhou, Changhai and Jin, Cheng},
-      journal={arXiv preprint arXiv:2405.14701},
-      year={2024}
+      author={Wang, Yibin and Zhang, Weizhong and Honghui, Xu and Jin, Cheng},
+      journal={CVPR},
+      year={2025}
     }
 ```
 
