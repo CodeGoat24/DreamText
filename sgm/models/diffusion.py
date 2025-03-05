@@ -139,6 +139,53 @@ class DiffusionEngine(pl.LightningModule):
         z = self.scale_factor * z
         return z
 
+    def forward(self, x, batch):
+
+        loss, loss_dict = self.loss_fn(self.model, self.denoiser, self.conditioner, x, batch, self.first_stage_model, self.scale_factor)
+
+        return loss, loss_dict
+
+    def shared_step(self, batch: Dict) -> Any:
+        x = self.get_input(batch)   
+        x = self.encode_first_stage(x)
+        batch["global_step"] = self.global_step
+        if self.use_rendered and 'rendered' in batch:
+            batch['bbox_region'] = batch['rendered']
+        if not self.supervise_mask:
+            batch.pop('seg')
+        loss, loss_dict = self(x, batch)
+        return loss, loss_dict
+
+    def training_step(self, batch, batch_idx):
+        loss, loss_dict = self.shared_step(batch)
+
+        self.log_dict(
+            loss_dict, prog_bar=True, logger=True, on_step=True, on_epoch=False
+        )
+
+        self.log(
+            "global_step",
+            float(self.global_step),
+            prog_bar=True,
+            logger=True,
+            on_step=True,
+            on_epoch=False,
+        )
+
+        lr = self.optimizers().param_groups[0]["lr"]
+        self.log(
+            "lr_abs", lr, prog_bar=True, logger=True, on_step=True, on_epoch=False
+        )   
+
+        return loss
+
+    def on_train_start(self, *args, **kwargs):
+        if self.sampler is None or self.loss_fn is None:
+            raise ValueError("Sampler and loss function need to be set for training.")
+
+    def on_train_batch_end(self, *args, **kwargs):
+        if self.use_ema:
+            self.model_ema(self.model)
 
     @contextmanager
     def ema_scope(self, context=None):
@@ -155,6 +202,32 @@ class DiffusionEngine(pl.LightningModule):
                 if context is not None:
                     print(f"{context}: Restored training weights")
 
+    def instantiate_optimizer_from_config(self, params, lr, cfg):
+        return get_obj_from_str(cfg["target"])(
+            params, lr=lr, **cfg.get("params", dict())
+        )
+
+    def configure_optimizers(self):
+        lr = self.learning_rate
+        params = []
+        print("Trainable parameter list: ")
+        print("-"*20)
+        for name, param in self.model.named_parameters():
+            if any([key in name for key in self.opt_keys]):
+                params.append(param)
+                # print(name)
+            else:
+                param.requires_grad_(False)
+        for embedder in self.conditioner.embedders:
+            if embedder.is_trainable:
+                for name, param in embedder.named_parameters():
+                    params.append(param)
+                    # print(name)
+        print("-"*20)
+        opt = self.instantiate_optimizer_from_config(params, lr, self.optimizer_config)
+        scheduler = torch.optim.lr_scheduler.LambdaLR(opt, lr_lambda=lambda epoch: 0.95**epoch)
+
+        return [opt], scheduler
 
     @torch.no_grad()
     def sample(
