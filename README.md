@@ -1,5 +1,5 @@
 <div align="center">
-<h1>High Fidelity Scene Text Synthesis</h1>
+<h1>DreamText: High Fidelity Scene Text Synthesis</h1>
 
 
 [Yibin Wang](https://codegoat24.github.io)\*, [Weizhong Zhang](https://weizhonz.github.io/)\*, [Honghui Xu](https://scholar.google.com.hk/citations?user=_cZgJawAAAAJ&hl=zh-CN), [Cheng Jin](https://cjinfdu.github.io/)&#8224; 
@@ -45,8 +45,7 @@ python run_gradio.py
 ## 🗓️ TODO
 - [x] Release inference code
 - [x] Release gradio demo
-- [ ] Release training code and datasets
-- [ ] Release evaluation code
+- [ ] Release training code and datasets (Coming soon!)
 
 
 
