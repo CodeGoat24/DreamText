@@ -1,0 +1,31 @@
+type: "test"
+
+# path
+load_ckpt_path: "./checkpoints/pre_trained.ckpt"
+model_cfg_path: "./configs/test/textdesign_sd_2.yaml"
+dataset_cfg_path: "./configs/dataset/icd13.yaml"
+output_dir: "./outputs"
+temp_dir: "./temp"
+
+# param
+channel: 4 # AE latent channel
+factor: 8 # AE downsample factor
+scale: [5.0, 0.0] # cfg scale, None
+force_uc_zero_embeddings: ["label"] # condition label
+detailed: True # save visualization results
+
+# runtime
+steps: 50 # sampling steps
+init_step: 0
+batch_size: 1
+num_workers: 0
+gpu: 3 # index of your gpu device
+shuffle: False
+quan_test: False # quantitative test
+
+# ocr
+ocr_enabled: True
+predictor_config:
+  target: sgm.modules.predictors.model.ParseqPredictor
+  params:
+    ckpt_path: "./checkpoints/predictors/parseq-bb5792a6.pt"

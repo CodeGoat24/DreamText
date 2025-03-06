@@ -1,0 +1,164 @@
+model:
+  target: sgm.models.diffusion.DiffusionEngine
+  params:
+    opt_keys:
+      - t_attn
+      - t_norm
+    input_key: image
+    scale_factor: 0.18215
+    disable_first_stage_autocast: True
+    use_rendered: True
+    supervise_mask: True
+
+    denoiser_config:
+      target: sgm.modules.diffusionmodules.denoiser.DiscreteDenoiser
+      params:
+        num_idx: 1000
+
+        weighting_config:
+          target: sgm.modules.diffusionmodules.denoiser_weighting.EpsWeighting
+        scaling_config:
+          target: sgm.modules.diffusionmodules.denoiser_scaling.EpsScaling
+        discretization_config:
+          target: sgm.modules.diffusionmodules.discretizer.LegacyDDPMDiscretization
+
+    network_config:
+      target: sgm.modules.diffusionmodules.openaimodel.UnifiedUNetModel
+      params:
+        in_channels: 9
+        out_channels: 4
+        ctrl_channels: 0
+        model_channels: 320
+        attention_resolutions: [4, 2, 1]
+        save_attn_type: [t_attn]
+        save_attn_layers: [output_blocks.6.1]
+        num_res_blocks: 2
+        channel_mult: [1, 2, 4, 4]
+        num_head_channels: 64
+        use_linear_in_transformer: True
+        transformer_depth: 1
+        t_context_dim: 2048
+
+    conditioner_config:
+      target: sgm.modules.GeneralConditioner
+      params:
+        emb_models:
+          # textual crossattn cond
+          - is_trainable: True
+            emb_key: t_crossattn
+            ucg_rate: 0.1
+            input_key: label
+            target: sgm.modules.encoders.modules.LabelEncoder
+            params:
+              max_len: 12
+              emb_dim: 2048
+              n_heads: 8
+              n_trans_layers: 12
+              lambda_cls: 0.1
+              lambda_pos: 0.1
+              ckpt_path: ./checkpoints/encoders/LabelEncoder/epoch=19-step=7820-002.ckpt
+
+              visual_config:
+                target: sgm.modules.encoders.modules.ViTSTREncoder
+                params:
+                  freeze: True
+                  ckpt_path: "./checkpoints/encoders/ViTSTR/vitstr_base_patch16_224.pth"
+                  size: 224
+                  patch_size: 16
+                  embed_dim: 768
+                  depth: 12
+                  num_heads: 12
+                  mlp_ratio: 4
+                  qkv_bias: True
+                  in_chans: 1
+          # concat cond
+          - is_trainable: False
+            input_key: mask
+            target: sgm.modules.encoders.modules.SpatialRescaler
+            params:
+              in_channels: 1
+              multiplier: 0.125
+          - is_trainable: False
+            input_key: masked
+            target: sgm.modules.encoders.modules.LatentEncoder
+            params:
+              scale_factor: 0.18215
+              config:
+                target: sgm.models.autoencoder.AutoencoderKLInferenceWrapper
+                params:
+                  ckpt_path: ./checkpoints/AEs/AE_inpainting_2.safetensors
+                  embed_dim: 4
+                  monitor: val/rec_loss
+                  ddconfig:
+                    attn_type: vanilla-xformers
+                    double_z: true
+                    z_channels: 4
+                    resolution: 256
+                    in_channels: 3
+                    out_ch: 3
+                    ch: 128
+                    ch_mult: [1, 2, 4, 4]
+                    num_res_blocks: 2
+                    attn_resolutions: []
+                    dropout: 0.0
+                  lossconfig:
+                    target: torch.nn.Identity
+
+    first_stage_config:
+      target: sgm.models.autoencoder.AutoencoderKLInferenceWrapper
+      params:
+        ckpt_path: ./checkpoints/AEs/AE_inpainting_2.safetensors
+        embed_dim: 4
+        monitor: val/rec_loss
+        ddconfig:
+          attn_type: vanilla-xformers
+          double_z: true
+          z_channels: 4
+          resolution: 256
+          in_channels: 3
+          out_ch: 3
+          ch: 128
+          ch_mult: [1, 2, 4, 4]
+          num_res_blocks: 2
+          attn_resolutions: []
+          dropout: 0.0
+        lossconfig:
+          target: torch.nn.Identity
+
+    loss_fn_config:
+      target: sgm.modules.diffusionmodules.loss.FullLoss # StandardDiffusionLoss
+      params:
+        seq_len: 12
+        kernel_size: 3
+        gaussian_sigma: 1.0
+        min_attn_size: 16
+        lambda_cross_loss: 0.01
+        lambda_clip_loss: 0.001
+        lambda_masked_loss: 0.01
+        lambda_seg_loss: 0.001
+
+        predictor_config:
+          target: sgm.modules.predictors.model.ParseqPredictor
+          params:
+            ckpt_path: "./checkpoints/predictors/parseq-bb5792a6.pt"
+        
+        sigma_sampler_config:
+          target: sgm.modules.diffusionmodules.sigma_sampling.DiscreteSampling
+          params:
+            num_idx: 1000
+            
+            discretization_config:
+              target: sgm.modules.diffusionmodules.discretizer.LegacyDDPMDiscretization
+
+    sampler_config:
+      target: sgm.modules.diffusionmodules.sampling.EulerEDMSampler
+      params:
+        num_steps: 50
+
+        discretization_config:
+          target: sgm.modules.diffusionmodules.discretizer.LegacyDDPMDiscretization
+
+        guider_config:
+          target: sgm.modules.diffusionmodules.guiders.VanillaCFG
+          params:
+            scale: 5.0
