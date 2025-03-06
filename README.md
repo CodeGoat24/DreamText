@@ -8,7 +8,7 @@
 
 [Fudan University]
 
-[Shanghai Innovation Intuition]
+[Shanghai Innovation Institute]
 
 CVPR2025
 
