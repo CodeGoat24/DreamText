@@ -1,0 +1,14 @@
+target: SynthTextDataset
+params:
+
+  data_root: '/remote-home/share/'
+
+  H: 512
+  W: 512
+  word_len: [1, 12]
+  mask_min_ratio: 0.01
+  seg_min_ratio: 0.001
+
+  length: 100000
+  use_cached: True
+  bbr_size: 224

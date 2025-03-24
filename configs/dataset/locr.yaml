@@ -1,0 +1,16 @@
+target: LAIONOCRDataset
+params:
+
+  data_root: '/remote-home/share/'
+
+  H: 512
+  W: 512
+  word_len: [1, 12]
+  seq_len: 12
+  mask_min_ratio: 0.01
+  seg_min_ratio: 0.001
+  aug_text_enabled: False
+  aug_text_ratio: 1.0
+
+  use_cached: False
+  length: 100000
